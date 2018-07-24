@@ -20,7 +20,7 @@ if [ -n "$SSH_CLIENT" ]; then
         PORT=$(echo $SSH_CLIENT | awk '{printf $3}')
         HOSTNAME=$(hostname -f)
         IPADDR=$(hostname -I | awk '{printf $1}')
-        curl http://ipinfo.io/$IP -s -o $TMPINFO
+        curl https://ipinfo.io/$IP -s -o $TMPINFO
         CITY=$(cat $TMPINFO | jq '.city' | sed 's/"//g')
         REGION=$(cat $TMPINFO | jq '.region' | sed 's/"//g')
         COUNTRY=$(cat $TMPINFO | jq '.country' | sed 's/"//g')
