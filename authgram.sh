@@ -24,12 +24,12 @@ if [ -n "$SSH_CLIENT" ]; then
         CITY=$(cat $TMPINFO | jq '.city' | sed 's/"//g')
         REGION=$(cat $TMPINFO | jq '.region' | sed 's/"//g')
         COUNTRY=$(cat $TMPINFO | jq '.country' | sed 's/"//g')
-read -r -d '' msg << EOT
+read -r -d '' msg << EOM
 <b>$DATE_EXEC:</b>
 ${USER}@$HOSTNAME:$PORT 
 $IP, $CITY, $REGION, $COUNTRY
 [ $USER_INFO ]
-EOT
+EOM
 		curl --data chat_id="$USERID" --data-urlencode "text=${msg}" "https://api.telegram.org/bot$KEY/sendMessage?parse_mode=HTML" > /dev/null
         rm $TMPINFO
 fi
